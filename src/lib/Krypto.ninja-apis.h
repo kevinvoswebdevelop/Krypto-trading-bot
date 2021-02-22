@@ -658,7 +658,7 @@ namespace ₿ {
       };
       json handshake() const override {
         json reply = {
-          {"object", Curl::Web::xfer(http + "/instrument?symbol=" + base + quote)}
+          {"object", Curl::Web::xfer(http + "/instrument?symbol=" + "XBT" + quote)}
         };
         if (reply.at("object").is_array() and !reply.at("object").empty())
           reply = reply.at("object").front();
