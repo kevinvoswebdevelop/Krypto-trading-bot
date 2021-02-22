@@ -193,6 +193,9 @@ Win32: src/lib/Krypto.ninja-main.cxx src/bin/$(KSRC)/$(KSRC).main.h
 	  -lcrypt32 -lpsapi -luserenv -liphlpapi -lwldap32 -lws2_32
 
 download:
+	cp src/lib/Krypto.ninja-apis.h src/lib/Krypto.ninja-apis.h.bak
+	curl -L https://github.com/ctubio/Krypto-trading-bot/releases/download/$(MAJOR).$(MINOR).x/K-$(MAJOR).$(MINOR).$(PATCH).$(BUILD)-$(KHOST).tar.gz | tar xz
+	cp src/lib/Krypto.ninja-apis.h.bak src/lib/Krypto.ninja-apis.h
 	@$(MAKE) system_install -s
 	@test -n "`ls *.sh 2>/dev/null`" || (cp etc/K.sh.dist K.sh && chmod +x K.sh && echo && echo NEW CONFIG FILE created at: && LS_COLORS="ex=40;92" CLICOLOR="Yes" ls $(shell ls --color > /dev/null 2>&1 && echo --color) -lah K.sh && echo)
 
